@@ -34,12 +34,3 @@ const Articles = (): JSX.Element => {
 export default Articles;
 
 
-
-// https://codesandbox.io/p/devbox/nextjs-fetch-jsonplaceholder-posts-dynamic-users-hr34q?file=%2Fpages%2Fpost%2F%5Bid%5D.js%3A7%2C46
-// export async function generateStaticParams() {
-//   const posts = await fetch('https://.../posts').then((res) => res.json())
- 
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }))
-// }
