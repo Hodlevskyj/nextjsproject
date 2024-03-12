@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Create = () => {
+const LayoutCreate = () => {
   return (
     <>
-      
     </>
   )
 }
 
-export default Create
+export default LayoutCreate
