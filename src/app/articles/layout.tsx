@@ -14,9 +14,10 @@ interface Post {
 
 interface LayoutArticlesProps {
   posts: Post[];
+  children:any;
 }
 
-const LayoutArticles = ({ posts }: LayoutArticlesProps) => {
+const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
   const pathname = usePathname();
   return (
     <div className="container mx-auto py-4">
@@ -44,7 +45,7 @@ const LayoutArticles = ({ posts }: LayoutArticlesProps) => {
             </li>
           ))}
         </ul>
-      ) : (
+      ) : children? children:(
         <Alert variant="filled" severity="info">
           No post available.
         </Alert>
@@ -55,6 +56,5 @@ const LayoutArticles = ({ posts }: LayoutArticlesProps) => {
 };
 
 export default LayoutArticles;
-
 
 

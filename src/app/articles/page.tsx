@@ -1,8 +1,6 @@
 "use client"
-
 import React, { useEffect, useState } from 'react';
 import LayoutArticles from './layout';
-
 
 interface Post {
   id: number;
@@ -10,7 +8,7 @@ interface Post {
   body: string;
 }
 
-const Articles = (): JSX.Element => {
+const Articles: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -28,11 +26,10 @@ const Articles = (): JSX.Element => {
   }, []);
 
   return (
-    <LayoutArticles posts={posts} />
+    <LayoutArticles posts={posts}>
+      {/* Your additional content here */}
+    </LayoutArticles>
   );
 };
 
 export default Articles;
-
-
-
