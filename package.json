@@ -14,8 +14,12 @@
     "@mui/material": "^5.15.11",
     "next": "14.0.3",
     "react": "^18",
+<<<<<<< HEAD
     "react-dom": "^18",
     "sass": "^1.71.1"
+=======
+    "react-dom": "^18"
+>>>>>>> 715440a3c67d280738eaba7ca9eac65c58620054
   },
   "devDependencies": {
     "@types/node": "^20",
