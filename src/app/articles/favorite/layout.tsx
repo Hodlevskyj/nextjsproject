@@ -10,17 +10,17 @@ interface LayoutFavoriteProps {
 }
 
 interface Favorite {
-  favoriteArticle: LayoutFavoriteProps[];
+  favoriteArticle: LayoutFavoriteProps;
   children: any;
 }
 
-const LayoutFavorite = ({ favoriteArticle, id, children }: Favorite) => {
+const LayoutFavorite = ({ favoriteArticle, children }: Favorite) => {
   const [article, setArticle] = useState({});
 
 
   const fetchArticle = async () => {
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${favoriteArticle.id}`);
       const data = await response.json();
       setArticle(data);
     } catch (error) {
