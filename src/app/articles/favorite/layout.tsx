@@ -1,41 +1,53 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Alert from '@mui/material/Alert';
+
 
 interface LayoutFavoriteProps {
   id: number;
+  title: string;
+  body: string;
 }
 
-const LayoutFavorite: React.FC<LayoutFavoriteProps> = ({ id }) => {
-  const [article, setArticle] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+interface Favorite {
+  favoriteArticle: LayoutFavoriteProps[];
+  children: any;
+}
 
-  useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-        const data = await response.json();
-        setArticle(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching article:', error);
-        setLoading(false);
-      }
-    };
+const LayoutFavorite = ({ favoriteArticle, id, children }: Favorite) => {
+  const [article, setArticle] = useState({});
 
-    fetchArticle();
-  }, [id]);
+
+  const fetchArticle = async () => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      const data = await response.json();
+      setArticle(data);
+    } catch (error) {
+      console.error('Error fetching article:', error);
+    }
+  };
+
+  fetchArticle();
+
 
   return (
-    <div>
-      {loading ? (
-        <p>Loading article {id}...</p>
-      ) : (
-        <div>
-          <h2>{article.title}</h2>
-          <p>{article.body}</p>
-        </div>
+    <>
+      {favoriteArticle && favoriteArticle.length > 0 ? (
+        <ul>
+          {favoriteArticle.map(article => (
+            <li key={article.id}>
+              <h2>{article.title}</h2>
+              <p>{article.body}</p>
+            </li>
+          ))}
+        </ul>
+      ) : children ? children : (
+        <Alert variant="filled" severity="info">
+          No post available.
+        </Alert>
       )}
-    </div>
+    </>
   );
 };
 

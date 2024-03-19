@@ -14,16 +14,12 @@
     "@mui/material": "^5.15.11",
     "next": "14.0.3",
     "react": "^18",
-<<<<<<< HEAD
     "react-dom": "^18",
     "sass": "^1.71.1"
-=======
-    "react-dom": "^18"
->>>>>>> 715440a3c67d280738eaba7ca9eac65c58620054
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.2.67",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
@@ -31,5 +27,9 @@
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "author": "",
+  "license": "ISC"
 }
