@@ -1,5 +1,5 @@
 "use client"
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import LayoutArticles from '../layout';
 
@@ -17,9 +17,15 @@ interface Comment {
   body: string;
 }
 
-const Article: React.FC = () => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const Article: React.FC<Props> = ({ params }) => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = params;
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
 
@@ -33,7 +39,6 @@ const Article: React.FC = () => {
         const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
         const commentsData = await commentsResponse.json();
         setComments(commentsData);
-
       } catch (error) {
         console.error('Error fetching post and comments:', error);
       }
@@ -45,23 +50,22 @@ const Article: React.FC = () => {
   }, [id]);
 
   return (
-    <LayoutArticles post={post}>
-      <>
-        <h1>{post?.title}</h1>
-        <p>{post?.body}</p>
-        <h2>Comments</h2>
-        <ul>
-          {comments.map(comment => (
-            <li key={comment.id}>
-              <h3>{comment.name}</h3>
-              <p>{comment.body}</p>
-            </li>
-          ))}
-        </ul>
-      </>
-    </LayoutArticles>
+    <>
+      <h1>{post?.title}</h1>
+      <p>{post?.body}</p>
+      <h2>Comments</h2>
+      <ul>
+        {comments.map(comment => (
+          <li key={comment.id}>
+            <h3>{comment.name}</h3>
+            <p>{comment.body}</p>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
 export default Article;
+
 

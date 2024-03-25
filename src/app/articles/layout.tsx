@@ -36,7 +36,7 @@ const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
       </nav>
 
 
-      {posts && posts.length > 0 ? (
+      {/* {posts && posts.length > 0 ? (
         <ul>
           {posts.map(post => (
             <li key={post.id}>
@@ -49,12 +49,12 @@ const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
         <Alert variant="filled" severity="info">
           No post available.
         </Alert>
-      )}
-
+      )} */}
+    {children}
     </div>
   );
 };
-
 export default LayoutArticles;
+
 
 
