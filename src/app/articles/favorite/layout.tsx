@@ -1,7 +1,6 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
-
 
 interface LayoutFavoriteProps {
   id: number;
@@ -10,45 +9,49 @@ interface LayoutFavoriteProps {
 }
 
 interface Favorite {
-  favoriteArticle: LayoutFavoriteProps;
-  children: any;
+  favoriteArticle?: LayoutFavoriteProps | null;
+  children: React.ReactNode;
 }
 
 const LayoutFavorite = ({ favoriteArticle, children }: Favorite) => {
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState<LayoutFavoriteProps | null>(null);
 
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${favoriteArticle?.id}`);
+        const data: LayoutFavoriteProps = await response.json();
+        setArticle(data);
+      } catch (error) {
+        console.error('Error fetching article:', error);
+      }
+    };
 
-  const fetchArticle = async () => {
-    try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${favoriteArticle.id}`);
-      const data = await response.json();
-      setArticle(data);
-    } catch (error) {
-      console.error('Error fetching article:', error);
+    if (favoriteArticle?.id) {
+      fetchArticle();
     }
-  };
-
-  fetchArticle();
-
+  }, [favoriteArticle]);
 
   return (
     <>
-      {favoriteArticle && favoriteArticle.length > 0 ? (
-        <ul>
-          {favoriteArticle.map(article => (
-            <li key={article.id}>
-              <h2>{article.title}</h2>
-              <p>{article.body}</p>
-            </li>
-          ))}
-        </ul>
-      ) : children ? children : (
-        <Alert variant="filled" severity="info">
-          No post available.
-        </Alert>
+      {favoriteArticle?.id && article ? (
+        <div>
+          <h2>{favoriteArticle.title}</h2>
+          <p>{favoriteArticle.body}</p>
+        </div>
+      ) : (
+        children ? children : (
+          <Alert variant="filled" severity="info">
+            No post available.
+          </Alert>
+        )
       )}
     </>
   );
 };
 
 export default LayoutFavorite;
+
+
+
+

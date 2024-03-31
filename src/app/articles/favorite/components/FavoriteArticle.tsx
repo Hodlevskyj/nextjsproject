@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 interface ArticleProps {
   id: number;
@@ -6,12 +7,31 @@ interface ArticleProps {
   body: string;
 }
 
-const FavoriteArticle: React.FC<ArticleProps> = ({ id, title, body }) => {
+const FavoriteArticle: React.FC<ArticleProps> = ({ title, body }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    //Симулюємо затримку завантаження за допомогою setTimeout
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); //Адаптуємо час затримки за необхідності
+
+    return () => clearTimeout(timer); //Прибираємо таймер при виході з компоненту
+  }, []);
+
   return (
+    // <div>
+    //   <h2>{title}</h2>
+    //   <p>{body}</p>
+    //   <p>ID: {id}</p>
+    // </div>
     <div>
       <h2>{title}</h2>
-      <p>{body}</p>
-      <p>ID: {id}</p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <p>{body}</p>
+      )}
+      <hr />
     </div>
   );
 };

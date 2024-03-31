@@ -2,29 +2,30 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styles from './articles.module.css';
-import Alert from '@mui/material/Alert';
+import styles from "./articles.module.css"
 
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+// interface Post {
+//   id: number;
+//   title: string;
+//   body: string;
+// }
 
 interface LayoutArticlesProps {
-  posts: Post[];
+  // posts: Post[];
   children:any;
 }
 
-const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
+const LayoutArticles = ({ /*posts,*/children }: LayoutArticlesProps) => {
   const pathname = usePathname();
+  console.log(pathname);
   return (
+    
     <div className="container mx-auto py-4">
       <nav className="mb-4">
         <ul className="flex space-x-4">
           <li className={pathname === '/articles' ? 'font-bold text-blue-500' : ''}>
-            <Link href="/articles" className={styles.header}>Articles</Link>
+          <Link href="/articles" className={styles.header}>Articles</Link>
           </li>
           <li className={pathname === '/articles/favorite' ? 'font-bold text-blue-500' : ''}>
             <Link href="/articles/favorite">Articles Favorite</Link>
@@ -34,6 +35,7 @@ const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
           </li>
         </ul>
       </nav>
+
 
 
       {/* {posts && posts.length > 0 ? (
@@ -51,10 +53,12 @@ const LayoutArticles = ({ posts,children }: LayoutArticlesProps) => {
         </Alert>
       )} */}
     {children}
-    </div>
+    
+    
+  </div>
+
   );
 };
 export default LayoutArticles;
-
 
 
