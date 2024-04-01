@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from '@mui/material/Alert';
 
 interface LayoutFavoriteProps {
@@ -9,35 +9,35 @@ interface LayoutFavoriteProps {
 }
 
 interface Favorite {
-  favoriteArticle?: LayoutFavoriteProps | null;
-  children: React.ReactNode;
+  favoriteArticle: LayoutFavoriteProps | null;
+  children?: React.ReactNode;
 }
 
-const LayoutFavorite = ({ favoriteArticle, children }: Favorite) => {
+const LayoutFavorite: React.FC<Favorite> = ({ favoriteArticle, children }) => {
   const [article, setArticle] = useState<LayoutFavoriteProps | null>(null);
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${favoriteArticle?.id}`);
-        const data: LayoutFavoriteProps = await response.json();
-        setArticle(data);
+        if (favoriteArticle) {
+          const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${favoriteArticle.id}`);
+          const data = await response.json();
+          setArticle(data);
+        }
       } catch (error) {
         console.error('Error fetching article:', error);
       }
     };
 
-    if (favoriteArticle?.id) {
-      fetchArticle();
-    }
+    fetchArticle();
   }, [favoriteArticle]);
 
   return (
     <>
-      {favoriteArticle?.id && article ? (
+      {favoriteArticle && article ? (
         <div>
-          <h2>{favoriteArticle.title}</h2>
-          <p>{favoriteArticle.body}</p>
+          <h2>{article.title}</h2>
+          <p>{article.body}</p>
         </div>
       ) : (
         children ? children : (
@@ -51,7 +51,3 @@ const LayoutFavorite = ({ favoriteArticle, children }: Favorite) => {
 };
 
 export default LayoutFavorite;
-
-
-
-
