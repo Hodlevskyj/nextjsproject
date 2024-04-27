@@ -9,12 +9,12 @@ interface LayoutFavoriteProps {
 }
 
 interface Favorite {
-  favoriteArticle: LayoutFavoriteProps | null;
+  favoriteArticle?: LayoutFavoriteProps;
   children?: React.ReactNode;
 }
 
 const LayoutFavorite: React.FC<Favorite> = ({ favoriteArticle, children }) => {
-  const [article, setArticle] = useState<LayoutFavoriteProps | null>(null);
+  const [article, setArticle] = useState<LayoutFavoriteProps>();
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -31,6 +31,7 @@ const LayoutFavorite: React.FC<Favorite> = ({ favoriteArticle, children }) => {
 
     fetchArticle();
   }, [favoriteArticle]);
+
 
   return (
     <>

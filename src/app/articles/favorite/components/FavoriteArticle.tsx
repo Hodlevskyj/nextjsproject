@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 
 
@@ -13,17 +14,12 @@ const FavoriteArticle: React.FC<ArticleProps> = ({ title, body }) => {
     //Симулюємо затримку завантаження за допомогою setTimeout
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); //Адаптуємо час затримки за необхідності
+    }, 2000);
 
     return () => clearTimeout(timer); //Прибираємо таймер при виході з компоненту
   }, []);
 
   return (
-    // <div>
-    //   <h2>{title}</h2>
-    //   <p>{body}</p>
-    //   <p>ID: {id}</p>
-    // </div>
     <div>
       <h2>{title}</h2>
       {loading ? (
