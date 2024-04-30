@@ -32,7 +32,7 @@ const FavoriteArticlesPage: React.FC = () => {
     <div>
       <h1>Favorite Articles</h1>
       {articles.map(article => (
-        <FavoriteArticle key={article.id} id={article.id} title={article.title} body={article.body} />
+        <FavoriteArticle id={article.id} title={article.title} body={article.body} />
       ))}
     </div>
   );
