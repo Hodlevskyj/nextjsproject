@@ -20,32 +20,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-// "use client"
-// import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
-
-// const LayoutAll = () => {
-//   const pathname = usePathname();
-
-//   return (
-//     <div className="container mx-auto py-4">
-//       <nav className="mb-4">
-//         <ul className="flex space-x-4">
-//           <li className={pathname === '/articles' ? 'font-bold text-blue-500' : ''}>
-//             <Link href="/articles">Articles</Link>
-//           </li>
-//           <li className={pathname === '/profile/settings' ? 'font-bold text-blue-500' : ''}>
-//             <Link href="/profile/settings">Profile Settings</Link>
-//           </li>
-//           <li className={pathname === '/profile/security' ? 'font-bold text-blue-500' : ''}>
-//             <Link href="/profile/security">Profile Security</Link>
-//           </li>
-//         </ul>
-//       </nav>
-//     </div>
-//   );
-// };
-
-// export default LayoutAll;

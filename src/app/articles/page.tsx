@@ -21,7 +21,6 @@ const Articles: React.FC = () => {
         console.error('Error:', error);
       }
     };
-
     fetchPosts();
   }, []);
   

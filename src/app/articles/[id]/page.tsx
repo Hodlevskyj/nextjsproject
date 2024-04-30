@@ -24,7 +24,6 @@ type Props = {
 };
 
 const Article: React.FC<Props> = ({ params }) => {
-  const router = useRouter();
   const { id } = params;
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);

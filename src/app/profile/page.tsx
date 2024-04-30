@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Security = () => {
+const ProfilePage = () => {
   return (
     <div>
-
+      
     </div>
   )
 }
 
-export default Security
+export default ProfilePage
