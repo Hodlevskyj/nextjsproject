@@ -8,6 +8,7 @@ describe('FavoritePage', () => {
         const header = screen.getByRole('heading');
         const headerText ='https://jsonplaceholder.typicode.com/posts/${id}';
         expect(header).toBeInTheDocument(headerText);
+        
 
     })
 })
